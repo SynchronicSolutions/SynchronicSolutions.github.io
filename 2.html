@@ -13150,7 +13150,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In&nbsp;[428]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">datasets</span>
@@ -13165,15 +13165,15 @@ div#notebook {
 <span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">km</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span>
-<span class="n">klaster1</span> <span class="o">=</span> <span class="n">labels</span> <span class="o">==</span> <span class="mi">1</span>
-<span class="n">klaster1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">klaster1</span><span class="p">]</span>
+<span class="n">cluster_1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cluster_1</span><span class="p">)</span>
 
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
 
 <span class="n">centers</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">cluster_centers_</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13186,13 +13186,61 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[104]:</div>
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[6.9 3.1 4.9 1.5]
+ [6.7 3.  5.  1.7]
+ [6.3 3.3 6.  2.5]
+ [7.1 3.  5.9 2.1]
+ [6.3 2.9 5.6 1.8]
+ [6.5 3.  5.8 2.2]
+ [7.6 3.  6.6 2.1]
+ [7.3 2.9 6.3 1.8]
+ [6.7 2.5 5.8 1.8]
+ [7.2 3.6 6.1 2.5]
+ [6.5 3.2 5.1 2. ]
+ [6.4 2.7 5.3 1.9]
+ [6.8 3.  5.5 2.1]
+ [6.4 3.2 5.3 2.3]
+ [6.5 3.  5.5 1.8]
+ [7.7 3.8 6.7 2.2]
+ [7.7 2.6 6.9 2.3]
+ [6.9 3.2 5.7 2.3]
+ [7.7 2.8 6.7 2. ]
+ [6.7 3.3 5.7 2.1]
+ [7.2 3.2 6.  1.8]
+ [6.4 2.8 5.6 2.1]
+ [7.2 3.  5.8 1.6]
+ [7.4 2.8 6.1 1.9]
+ [7.9 3.8 6.4 2. ]
+ [6.4 2.8 5.6 2.2]
+ [6.1 2.6 5.6 1.4]
+ [7.7 3.  6.1 2.3]
+ [6.3 3.4 5.6 2.4]
+ [6.4 3.1 5.5 1.8]
+ [6.9 3.1 5.4 2.1]
+ [6.7 3.1 5.6 2.4]
+ [6.9 3.1 5.1 2.3]
+ [6.8 3.2 5.9 2.3]
+ [6.7 3.3 5.7 2.5]
+ [6.7 3.  5.2 2.3]
+ [6.5 3.  5.2 2. ]
+ [6.2 3.4 5.4 2.3]]
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[428]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x2a6798f57b8&gt;</pre>
+<pre>&lt;matplotlib.collections.PathCollection at 0x2a6295e5dd8&gt;</pre>
 </div>
 
 </div>
@@ -13205,7 +13253,7 @@ div#notebook {
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -13218,7 +13266,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[409]:</div>
+<div class="prompt input_prompt">In&nbsp;[430]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 2. Izabrati dve cifre iz dataseta digits i napraviti novi dataset.</span>
@@ -13245,13 +13293,13 @@ div#notebook {
 <span class="n">LDA</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_training</span><span class="p">,</span> <span class="n">Y_training</span><span class="p">)</span>
 
 <span class="n">LDAPrediction</span> <span class="o">=</span> <span class="n">LDA</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">LDAPrediction</span> <span class="o">==</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_test</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">LDAPrediction</span> <span class="o">==</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
 
 <span class="n">KNN</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">KNN</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_training</span><span class="p">,</span> <span class="n">Y_training</span><span class="p">)</span>
 
 <span class="n">KNNPrediction</span> <span class="o">=</span> <span class="n">KNN</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">KNNPrediction</span> <span class="o">==</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_test</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">KNNPrediction</span> <span class="o">==</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13280,8 +13328,8 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.9611111111111111
-0.9833333333333333
+<pre>95.27777777777777
+98.61111111111111
 </pre>
 </div>
 </div>
@@ -13307,7 +13355,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[401]:</div>
+<div class="prompt input_prompt">In&nbsp;[431]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 3. Primeniti neuronsku mrezu na digits dataset. </span>
@@ -13326,14 +13374,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[402]:</div>
+<div class="prompt input_prompt">In&nbsp;[432]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># podeliti skup na trening i test.</span>
 <span class="c1"># Koju strukturu predlazete ? </span>
 <span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
-
 <span class="n">Y_train</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">Y_train</span><span class="p">)</span>
 <span class="n">Y_test</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span>
 
@@ -13348,7 +13395,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[403]:</div>
+<div class="prompt input_prompt">In&nbsp;[433]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Kolika je tacnost na test skupu?</span>
@@ -13359,7 +13406,7 @@ div#notebook {
 
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 
 <span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">%s</span><span class="s2">: </span><span class="si">%.2f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">metrics_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
@@ -13381,305 +13428,305 @@ div#notebook {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Train on 1437 samples, validate on 360 samples
 Epoch 1/150
-1437/1437 [==============================] - 2s 1ms/step - loss: 2.0446 - acc: 0.3382 - val_loss: 1.4890 - val_acc: 0.5917
+1437/1437 [==============================] - 3s 2ms/step - loss: 1.7691 - acc: 0.4475 - val_loss: 1.1058 - val_acc: 0.6917
 Epoch 2/150
-1437/1437 [==============================] - 0s 22us/step - loss: 1.1478 - acc: 0.7460 - val_loss: 0.8402 - val_acc: 0.8278
+1437/1437 [==============================] - 0s 38us/step - loss: 0.6931 - acc: 0.8372 - val_loss: 0.5151 - val_acc: 0.8639
 Epoch 3/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.6579 - acc: 0.8733 - val_loss: 0.5014 - val_acc: 0.9222
+1437/1437 [==============================] - 0s 37us/step - loss: 0.3618 - acc: 0.9290 - val_loss: 0.3597 - val_acc: 0.8917
 Epoch 4/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.4290 - acc: 0.9081 - val_loss: 0.3560 - val_acc: 0.9444
+1437/1437 [==============================] - 0s 40us/step - loss: 0.2485 - acc: 0.9443 - val_loss: 0.2660 - val_acc: 0.9167
 Epoch 5/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.3153 - acc: 0.9360 - val_loss: 0.2737 - val_acc: 0.9444
+1437/1437 [==============================] - 0s 38us/step - loss: 0.1867 - acc: 0.9582 - val_loss: 0.2275 - val_acc: 0.9361
 Epoch 6/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.2518 - acc: 0.9464 - val_loss: 0.2395 - val_acc: 0.9500
+1437/1437 [==============================] - 0s 37us/step - loss: 0.1511 - acc: 0.9694 - val_loss: 0.2007 - val_acc: 0.9333
 Epoch 7/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.2106 - acc: 0.9499 - val_loss: 0.2013 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 43us/step - loss: 0.1330 - acc: 0.9729 - val_loss: 0.1878 - val_acc: 0.9500
 Epoch 8/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.1793 - acc: 0.9645 - val_loss: 0.1824 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 38us/step - loss: 0.1104 - acc: 0.9812 - val_loss: 0.1820 - val_acc: 0.9528
 Epoch 9/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.1641 - acc: 0.9610 - val_loss: 0.1648 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0979 - acc: 0.9791 - val_loss: 0.1584 - val_acc: 0.9583
 Epoch 10/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.1418 - acc: 0.9680 - val_loss: 0.1604 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0852 - acc: 0.9861 - val_loss: 0.1552 - val_acc: 0.9500
 Epoch 11/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.1256 - acc: 0.9743 - val_loss: 0.1473 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0739 - acc: 0.9875 - val_loss: 0.1500 - val_acc: 0.9583
 Epoch 12/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.1162 - acc: 0.9743 - val_loss: 0.1447 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0676 - acc: 0.9910 - val_loss: 0.1355 - val_acc: 0.9639
 Epoch 13/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.1052 - acc: 0.9770 - val_loss: 0.1419 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0608 - acc: 0.9916 - val_loss: 0.1437 - val_acc: 0.9611
 Epoch 14/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0970 - acc: 0.9868 - val_loss: 0.1328 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0519 - acc: 0.9965 - val_loss: 0.1344 - val_acc: 0.9667
 Epoch 15/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0890 - acc: 0.9826 - val_loss: 0.1263 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0483 - acc: 0.9937 - val_loss: 0.1272 - val_acc: 0.9611
 Epoch 16/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0827 - acc: 0.9861 - val_loss: 0.1303 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0454 - acc: 0.9972 - val_loss: 0.1237 - val_acc: 0.9667
 Epoch 17/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0778 - acc: 0.9896 - val_loss: 0.1330 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0393 - acc: 0.9965 - val_loss: 0.1248 - val_acc: 0.9611
 Epoch 18/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0729 - acc: 0.9889 - val_loss: 0.1169 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0359 - acc: 0.9965 - val_loss: 0.1293 - val_acc: 0.9611
 Epoch 19/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0671 - acc: 0.9916 - val_loss: 0.1127 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0341 - acc: 0.9972 - val_loss: 0.1240 - val_acc: 0.9611
 Epoch 20/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0640 - acc: 0.9889 - val_loss: 0.1116 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0316 - acc: 0.9965 - val_loss: 0.1185 - val_acc: 0.9639
 Epoch 21/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0598 - acc: 0.9910 - val_loss: 0.1231 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0285 - acc: 0.9986 - val_loss: 0.1185 - val_acc: 0.9639
 Epoch 22/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0583 - acc: 0.9916 - val_loss: 0.1111 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0254 - acc: 0.9986 - val_loss: 0.1232 - val_acc: 0.9639
 Epoch 23/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0543 - acc: 0.9916 - val_loss: 0.1042 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0233 - acc: 0.9986 - val_loss: 0.1248 - val_acc: 0.9639
 Epoch 24/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0498 - acc: 0.9951 - val_loss: 0.1039 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0218 - acc: 0.9993 - val_loss: 0.1250 - val_acc: 0.9667
 Epoch 25/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0465 - acc: 0.9965 - val_loss: 0.1191 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0201 - acc: 0.9993 - val_loss: 0.1197 - val_acc: 0.9667
 Epoch 26/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0450 - acc: 0.9930 - val_loss: 0.1007 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0183 - acc: 0.9986 - val_loss: 0.1279 - val_acc: 0.9639
 Epoch 27/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0430 - acc: 0.9958 - val_loss: 0.1019 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0179 - acc: 0.9993 - val_loss: 0.1218 - val_acc: 0.9667
 Epoch 28/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0411 - acc: 0.9958 - val_loss: 0.1088 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0157 - acc: 0.9993 - val_loss: 0.1166 - val_acc: 0.9611
 Epoch 29/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0394 - acc: 0.9951 - val_loss: 0.1147 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0154 - acc: 0.9986 - val_loss: 0.1177 - val_acc: 0.9667
 Epoch 30/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0376 - acc: 0.9951 - val_loss: 0.0982 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0137 - acc: 0.9993 - val_loss: 0.1174 - val_acc: 0.9611
 Epoch 31/150
-1437/1437 [==============================] - 0s 26us/step - loss: 0.0349 - acc: 0.9965 - val_loss: 0.0992 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0132 - acc: 0.9993 - val_loss: 0.1230 - val_acc: 0.9639
 Epoch 32/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0333 - acc: 0.9965 - val_loss: 0.0953 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0120 - acc: 1.0000 - val_loss: 0.1186 - val_acc: 0.9639
 Epoch 33/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0342 - acc: 0.9972 - val_loss: 0.1013 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0121 - acc: 0.9993 - val_loss: 0.1180 - val_acc: 0.9583
 Epoch 34/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0310 - acc: 0.9972 - val_loss: 0.1072 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0114 - acc: 0.9993 - val_loss: 0.1201 - val_acc: 0.9639
 Epoch 35/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0291 - acc: 0.9979 - val_loss: 0.1011 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0098 - acc: 1.0000 - val_loss: 0.1196 - val_acc: 0.9639
 Epoch 36/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0278 - acc: 0.9972 - val_loss: 0.0970 - val_acc: 0.9778
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0102 - acc: 0.9993 - val_loss: 0.1182 - val_acc: 0.9611
 Epoch 37/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0265 - acc: 0.9972 - val_loss: 0.0971 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0092 - acc: 1.0000 - val_loss: 0.1169 - val_acc: 0.9611
 Epoch 38/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0258 - acc: 0.9986 - val_loss: 0.0994 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0088 - acc: 1.0000 - val_loss: 0.1174 - val_acc: 0.9639
 Epoch 39/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0240 - acc: 0.9986 - val_loss: 0.1014 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0082 - acc: 1.0000 - val_loss: 0.1177 - val_acc: 0.9639
 Epoch 40/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0245 - acc: 0.9979 - val_loss: 0.0929 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0077 - acc: 1.0000 - val_loss: 0.1205 - val_acc: 0.9611
 Epoch 41/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0225 - acc: 0.9979 - val_loss: 0.1037 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0069 - acc: 1.0000 - val_loss: 0.1191 - val_acc: 0.9639
 Epoch 42/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0223 - acc: 0.9986 - val_loss: 0.1021 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0065 - acc: 1.0000 - val_loss: 0.1181 - val_acc: 0.9639
 Epoch 43/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0221 - acc: 0.9979 - val_loss: 0.0922 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0064 - acc: 1.0000 - val_loss: 0.1211 - val_acc: 0.9639
 Epoch 44/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0223 - acc: 0.9986 - val_loss: 0.1074 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0060 - acc: 1.0000 - val_loss: 0.1199 - val_acc: 0.9667
 Epoch 45/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0194 - acc: 0.9993 - val_loss: 0.0944 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0056 - acc: 1.0000 - val_loss: 0.1182 - val_acc: 0.9639
 Epoch 46/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0202 - acc: 0.9979 - val_loss: 0.0984 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0053 - acc: 1.0000 - val_loss: 0.1214 - val_acc: 0.9611
 Epoch 47/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0173 - acc: 0.9986 - val_loss: 0.1022 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0051 - acc: 1.0000 - val_loss: 0.1183 - val_acc: 0.9639
 Epoch 48/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0171 - acc: 0.9979 - val_loss: 0.0940 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0049 - acc: 1.0000 - val_loss: 0.1196 - val_acc: 0.9639
 Epoch 49/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0163 - acc: 0.9986 - val_loss: 0.1020 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0047 - acc: 1.0000 - val_loss: 0.1223 - val_acc: 0.9611
 Epoch 50/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0153 - acc: 0.9986 - val_loss: 0.1036 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0044 - acc: 1.0000 - val_loss: 0.1197 - val_acc: 0.9639
 Epoch 51/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0148 - acc: 0.9986 - val_loss: 0.0989 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0046 - acc: 1.0000 - val_loss: 0.1208 - val_acc: 0.9639
 Epoch 52/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0139 - acc: 0.9993 - val_loss: 0.0988 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0048 - acc: 1.0000 - val_loss: 0.1238 - val_acc: 0.9611
 Epoch 53/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0145 - acc: 0.9986 - val_loss: 0.0970 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0043 - acc: 1.0000 - val_loss: 0.1246 - val_acc: 0.9639
 Epoch 54/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0146 - acc: 0.9979 - val_loss: 0.0985 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0038 - acc: 1.0000 - val_loss: 0.1232 - val_acc: 0.9611
 Epoch 55/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0129 - acc: 0.9993 - val_loss: 0.0969 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0036 - acc: 1.0000 - val_loss: 0.1209 - val_acc: 0.9611
 Epoch 56/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0124 - acc: 0.9993 - val_loss: 0.1053 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0035 - acc: 1.0000 - val_loss: 0.1210 - val_acc: 0.9639
 Epoch 57/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0122 - acc: 0.9986 - val_loss: 0.0993 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0033 - acc: 1.0000 - val_loss: 0.1214 - val_acc: 0.9639
 Epoch 58/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0118 - acc: 0.9993 - val_loss: 0.1029 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0033 - acc: 1.0000 - val_loss: 0.1215 - val_acc: 0.9639
 Epoch 59/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0115 - acc: 1.0000 - val_loss: 0.1044 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0030 - acc: 1.0000 - val_loss: 0.1230 - val_acc: 0.9639
 Epoch 60/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0111 - acc: 0.9993 - val_loss: 0.1037 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0030 - acc: 1.0000 - val_loss: 0.1222 - val_acc: 0.9639
 Epoch 61/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0112 - acc: 0.9986 - val_loss: 0.0969 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0028 - acc: 1.0000 - val_loss: 0.1219 - val_acc: 0.9639
 Epoch 62/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0102 - acc: 1.0000 - val_loss: 0.1019 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0028 - acc: 1.0000 - val_loss: 0.1222 - val_acc: 0.9694
 Epoch 63/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0098 - acc: 0.9993 - val_loss: 0.1026 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0026 - acc: 1.0000 - val_loss: 0.1223 - val_acc: 0.9667
 Epoch 64/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0095 - acc: 1.0000 - val_loss: 0.1063 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0025 - acc: 1.0000 - val_loss: 0.1223 - val_acc: 0.9639
 Epoch 65/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0090 - acc: 1.0000 - val_loss: 0.0956 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0024 - acc: 1.0000 - val_loss: 0.1233 - val_acc: 0.9694
 Epoch 66/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0090 - acc: 1.0000 - val_loss: 0.1081 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0024 - acc: 1.0000 - val_loss: 0.1225 - val_acc: 0.9611
 Epoch 67/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0087 - acc: 1.0000 - val_loss: 0.0990 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0023 - acc: 1.0000 - val_loss: 0.1221 - val_acc: 0.9639
 Epoch 68/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0085 - acc: 1.0000 - val_loss: 0.1030 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0022 - acc: 1.0000 - val_loss: 0.1230 - val_acc: 0.9639
 Epoch 69/150
-1437/1437 [==============================] - 0s 20us/step - loss: 0.0083 - acc: 1.0000 - val_loss: 0.1051 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0022 - acc: 1.0000 - val_loss: 0.1254 - val_acc: 0.9694
 Epoch 70/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0078 - acc: 0.9993 - val_loss: 0.0970 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0020 - acc: 1.0000 - val_loss: 0.1238 - val_acc: 0.9611
 Epoch 71/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0075 - acc: 1.0000 - val_loss: 0.1042 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0021 - acc: 1.0000 - val_loss: 0.1253 - val_acc: 0.9667
 Epoch 72/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0071 - acc: 1.0000 - val_loss: 0.1027 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0019 - acc: 1.0000 - val_loss: 0.1243 - val_acc: 0.9639
 Epoch 73/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0074 - acc: 1.0000 - val_loss: 0.1027 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0019 - acc: 1.0000 - val_loss: 0.1235 - val_acc: 0.9694
 Epoch 74/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0068 - acc: 1.0000 - val_loss: 0.1044 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1262 - val_acc: 0.9611
 Epoch 75/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0070 - acc: 1.0000 - val_loss: 0.1024 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1255 - val_acc: 0.9639
 Epoch 76/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0064 - acc: 1.0000 - val_loss: 0.1033 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0017 - acc: 1.0000 - val_loss: 0.1231 - val_acc: 0.9667
 Epoch 77/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0061 - acc: 1.0000 - val_loss: 0.1015 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0017 - acc: 1.0000 - val_loss: 0.1261 - val_acc: 0.9611
 Epoch 78/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0063 - acc: 1.0000 - val_loss: 0.1105 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0016 - acc: 1.0000 - val_loss: 0.1227 - val_acc: 0.9639
 Epoch 79/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0066 - acc: 1.0000 - val_loss: 0.1038 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 35us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1252 - val_acc: 0.9639
 Epoch 80/150
-1437/1437 [==============================] - 0s 25us/step - loss: 0.0061 - acc: 1.0000 - val_loss: 0.1014 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 39us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1250 - val_acc: 0.9639
 Epoch 81/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0055 - acc: 1.0000 - val_loss: 0.1075 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1253 - val_acc: 0.9639
 Epoch 82/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0055 - acc: 1.0000 - val_loss: 0.1056 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0014 - acc: 1.0000 - val_loss: 0.1258 - val_acc: 0.9639
 Epoch 83/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0053 - acc: 1.0000 - val_loss: 0.1013 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 38us/step - loss: 0.0014 - acc: 1.0000 - val_loss: 0.1272 - val_acc: 0.9639
 Epoch 84/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0054 - acc: 1.0000 - val_loss: 0.1135 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0013 - acc: 1.0000 - val_loss: 0.1266 - val_acc: 0.9667
 Epoch 85/150
-1437/1437 [==============================] - 0s 24us/step - loss: 0.0051 - acc: 1.0000 - val_loss: 0.1037 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 35us/step - loss: 0.0013 - acc: 1.0000 - val_loss: 0.1269 - val_acc: 0.9667
 Epoch 86/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0048 - acc: 1.0000 - val_loss: 0.1058 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0012 - acc: 1.0000 - val_loss: 0.1264 - val_acc: 0.9639
 Epoch 87/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0049 - acc: 1.0000 - val_loss: 0.1115 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 40us/step - loss: 0.0012 - acc: 1.0000 - val_loss: 0.1284 - val_acc: 0.9667
 Epoch 88/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0052 - acc: 1.0000 - val_loss: 0.0991 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 0.0012 - acc: 1.0000 - val_loss: 0.1267 - val_acc: 0.9639
 Epoch 89/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0057 - acc: 1.0000 - val_loss: 0.1048 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 35us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1280 - val_acc: 0.9639
 Epoch 90/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0047 - acc: 1.0000 - val_loss: 0.1061 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 37us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1285 - val_acc: 0.9694
 Epoch 91/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0043 - acc: 1.0000 - val_loss: 0.1052 - val_acc: 0.9750
+1437/1437 [==============================] - 0s 42us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1267 - val_acc: 0.9694
 Epoch 92/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0042 - acc: 1.0000 - val_loss: 0.1126 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 49us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1269 - val_acc: 0.9667
 Epoch 93/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0042 - acc: 1.0000 - val_loss: 0.1046 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 43us/step - loss: 0.0010 - acc: 1.0000 - val_loss: 0.1282 - val_acc: 0.9639
 Epoch 94/150
-1437/1437 [==============================] - 0s 25us/step - loss: 0.0039 - acc: 1.0000 - val_loss: 0.1121 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 0.0010 - acc: 1.0000 - val_loss: 0.1277 - val_acc: 0.9667
 Epoch 95/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0038 - acc: 1.0000 - val_loss: 0.1065 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 9.8565e-04 - acc: 1.0000 - val_loss: 0.1276 - val_acc: 0.9694
 Epoch 96/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0041 - acc: 1.0000 - val_loss: 0.1057 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 44us/step - loss: 9.7761e-04 - acc: 1.0000 - val_loss: 0.1281 - val_acc: 0.9667
 Epoch 97/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0038 - acc: 1.0000 - val_loss: 0.1083 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 9.4424e-04 - acc: 1.0000 - val_loss: 0.1292 - val_acc: 0.9667
 Epoch 98/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0036 - acc: 1.0000 - val_loss: 0.1072 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 44us/step - loss: 9.2248e-04 - acc: 1.0000 - val_loss: 0.1295 - val_acc: 0.9667
 Epoch 99/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0035 - acc: 1.0000 - val_loss: 0.1084 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 47us/step - loss: 9.0754e-04 - acc: 1.0000 - val_loss: 0.1287 - val_acc: 0.9667
 Epoch 100/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0035 - acc: 1.0000 - val_loss: 0.1098 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 8.5580e-04 - acc: 1.0000 - val_loss: 0.1300 - val_acc: 0.9639
 Epoch 101/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0034 - acc: 1.0000 - val_loss: 0.1075 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 8.4886e-04 - acc: 1.0000 - val_loss: 0.1290 - val_acc: 0.9667
 Epoch 102/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0032 - acc: 1.0000 - val_loss: 0.1103 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 8.1247e-04 - acc: 1.0000 - val_loss: 0.1292 - val_acc: 0.9667
 Epoch 103/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0032 - acc: 1.0000 - val_loss: 0.1108 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 7.9134e-04 - acc: 1.0000 - val_loss: 0.1291 - val_acc: 0.9667
 Epoch 104/150
-1437/1437 [==============================] - 0s 20us/step - loss: 0.0033 - acc: 1.0000 - val_loss: 0.1060 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 41us/step - loss: 8.1667e-04 - acc: 1.0000 - val_loss: 0.1297 - val_acc: 0.9639
 Epoch 105/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0033 - acc: 1.0000 - val_loss: 0.1145 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 37us/step - loss: 7.5255e-04 - acc: 1.0000 - val_loss: 0.1302 - val_acc: 0.9667
 Epoch 106/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0031 - acc: 1.0000 - val_loss: 0.1080 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 7.4268e-04 - acc: 1.0000 - val_loss: 0.1304 - val_acc: 0.9667
 Epoch 107/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0029 - acc: 1.0000 - val_loss: 0.1134 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 7.2513e-04 - acc: 1.0000 - val_loss: 0.1303 - val_acc: 0.9667
 Epoch 108/150
-1437/1437 [==============================] - 0s 20us/step - loss: 0.0029 - acc: 1.0000 - val_loss: 0.1095 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 7.0892e-04 - acc: 1.0000 - val_loss: 0.1311 - val_acc: 0.9639
 Epoch 109/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0028 - acc: 1.0000 - val_loss: 0.1137 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 6.8842e-04 - acc: 1.0000 - val_loss: 0.1311 - val_acc: 0.9667
 Epoch 110/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0027 - acc: 1.0000 - val_loss: 0.1096 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 6.6172e-04 - acc: 1.0000 - val_loss: 0.1298 - val_acc: 0.9694
 Epoch 111/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0029 - acc: 1.0000 - val_loss: 0.1170 - val_acc: 0.9694
+1437/1437 [==============================] - 0s 37us/step - loss: 6.4891e-04 - acc: 1.0000 - val_loss: 0.1315 - val_acc: 0.9667
 Epoch 112/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0028 - acc: 1.0000 - val_loss: 0.1079 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 6.3792e-04 - acc: 1.0000 - val_loss: 0.1313 - val_acc: 0.9639
 Epoch 113/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0028 - acc: 1.0000 - val_loss: 0.1129 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 6.3424e-04 - acc: 1.0000 - val_loss: 0.1313 - val_acc: 0.9667
 Epoch 114/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0026 - acc: 1.0000 - val_loss: 0.1115 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 44us/step - loss: 6.1369e-04 - acc: 1.0000 - val_loss: 0.1326 - val_acc: 0.9667
 Epoch 115/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0025 - acc: 1.0000 - val_loss: 0.1120 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 49us/step - loss: 6.0709e-04 - acc: 1.0000 - val_loss: 0.1324 - val_acc: 0.9694
 Epoch 116/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0025 - acc: 1.0000 - val_loss: 0.1109 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 50us/step - loss: 5.7777e-04 - acc: 1.0000 - val_loss: 0.1314 - val_acc: 0.9667
 Epoch 117/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0024 - acc: 1.0000 - val_loss: 0.1117 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 51us/step - loss: 5.7182e-04 - acc: 1.0000 - val_loss: 0.1324 - val_acc: 0.9694
 Epoch 118/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0023 - acc: 1.0000 - val_loss: 0.1132 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 45us/step - loss: 5.5342e-04 - acc: 1.0000 - val_loss: 0.1314 - val_acc: 0.9667
 Epoch 119/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0023 - acc: 1.0000 - val_loss: 0.1143 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 44us/step - loss: 5.4304e-04 - acc: 1.0000 - val_loss: 0.1335 - val_acc: 0.9694
 Epoch 120/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0023 - acc: 1.0000 - val_loss: 0.1128 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 43us/step - loss: 5.2445e-04 - acc: 1.0000 - val_loss: 0.1332 - val_acc: 0.9667
 Epoch 121/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0022 - acc: 1.0000 - val_loss: 0.1141 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 5.1599e-04 - acc: 1.0000 - val_loss: 0.1339 - val_acc: 0.9667
 Epoch 122/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0022 - acc: 1.0000 - val_loss: 0.1143 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 5.0651e-04 - acc: 1.0000 - val_loss: 0.1329 - val_acc: 0.9694
 Epoch 123/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0021 - acc: 1.0000 - val_loss: 0.1132 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 4.9460e-04 - acc: 1.0000 - val_loss: 0.1339 - val_acc: 0.9694
 Epoch 124/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0022 - acc: 1.0000 - val_loss: 0.1127 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 4.8665e-04 - acc: 1.0000 - val_loss: 0.1333 - val_acc: 0.9694
 Epoch 125/150
-1437/1437 [==============================] - 0s 23us/step - loss: 0.0021 - acc: 1.0000 - val_loss: 0.1172 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 4.7612e-04 - acc: 1.0000 - val_loss: 0.1339 - val_acc: 0.9667
 Epoch 126/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0020 - acc: 1.0000 - val_loss: 0.1136 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 4.7070e-04 - acc: 1.0000 - val_loss: 0.1328 - val_acc: 0.9694
 Epoch 127/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0020 - acc: 1.0000 - val_loss: 0.1130 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 4.4899e-04 - acc: 1.0000 - val_loss: 0.1337 - val_acc: 0.9667
 Epoch 128/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0019 - acc: 1.0000 - val_loss: 0.1138 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 4.4364e-04 - acc: 1.0000 - val_loss: 0.1336 - val_acc: 0.9667
 Epoch 129/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0019 - acc: 1.0000 - val_loss: 0.1157 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 4.3131e-04 - acc: 1.0000 - val_loss: 0.1345 - val_acc: 0.9667
 Epoch 130/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1160 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 35us/step - loss: 4.1948e-04 - acc: 1.0000 - val_loss: 0.1341 - val_acc: 0.9694
 Epoch 131/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1162 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 37us/step - loss: 4.1267e-04 - acc: 1.0000 - val_loss: 0.1346 - val_acc: 0.9694
 Epoch 132/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1128 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 3.9666e-04 - acc: 1.0000 - val_loss: 0.1350 - val_acc: 0.9667
 Epoch 133/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1142 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 36us/step - loss: 3.9058e-04 - acc: 1.0000 - val_loss: 0.1353 - val_acc: 0.9694
 Epoch 134/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0017 - acc: 1.0000 - val_loss: 0.1153 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 35us/step - loss: 3.8780e-04 - acc: 1.0000 - val_loss: 0.1347 - val_acc: 0.9694
 Epoch 135/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0017 - acc: 1.0000 - val_loss: 0.1158 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 35us/step - loss: 3.7907e-04 - acc: 1.0000 - val_loss: 0.1349 - val_acc: 0.9694
 Epoch 136/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0017 - acc: 1.0000 - val_loss: 0.1189 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 3.6912e-04 - acc: 1.0000 - val_loss: 0.1353 - val_acc: 0.9694
 Epoch 137/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0016 - acc: 1.0000 - val_loss: 0.1146 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 3.6828e-04 - acc: 1.0000 - val_loss: 0.1351 - val_acc: 0.9694
 Epoch 138/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0016 - acc: 1.0000 - val_loss: 0.1173 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 3.6351e-04 - acc: 1.0000 - val_loss: 0.1358 - val_acc: 0.9667
 Epoch 139/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0016 - acc: 1.0000 - val_loss: 0.1183 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 38us/step - loss: 3.4679e-04 - acc: 1.0000 - val_loss: 0.1361 - val_acc: 0.9722
 Epoch 140/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0016 - acc: 1.0000 - val_loss: 0.1164 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 3.3905e-04 - acc: 1.0000 - val_loss: 0.1364 - val_acc: 0.9694
 Epoch 141/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0016 - acc: 1.0000 - val_loss: 0.1139 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 3.3221e-04 - acc: 1.0000 - val_loss: 0.1368 - val_acc: 0.9667
 Epoch 142/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1191 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 3.2492e-04 - acc: 1.0000 - val_loss: 0.1366 - val_acc: 0.9667
 Epoch 143/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1179 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 3.2167e-04 - acc: 1.0000 - val_loss: 0.1374 - val_acc: 0.9667
 Epoch 144/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1163 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 3.1126e-04 - acc: 1.0000 - val_loss: 0.1361 - val_acc: 0.9722
 Epoch 145/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0014 - acc: 1.0000 - val_loss: 0.1190 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 42us/step - loss: 3.0966e-04 - acc: 1.0000 - val_loss: 0.1365 - val_acc: 0.9694
 Epoch 146/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0014 - acc: 1.0000 - val_loss: 0.1180 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 3.0049e-04 - acc: 1.0000 - val_loss: 0.1370 - val_acc: 0.9667
 Epoch 147/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0014 - acc: 1.0000 - val_loss: 0.1192 - val_acc: 0.9722
+1437/1437 [==============================] - ETA: 0s - loss: 2.2150e-04 - acc: 1.000 - 0s 38us/step - loss: 2.9700e-04 - acc: 1.0000 - val_loss: 0.1378 - val_acc: 0.9722
 Epoch 148/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0013 - acc: 1.0000 - val_loss: 0.1202 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 2.9000e-04 - acc: 1.0000 - val_loss: 0.1375 - val_acc: 0.9694
 Epoch 149/150
-1437/1437 [==============================] - 0s 21us/step - loss: 0.0013 - acc: 1.0000 - val_loss: 0.1198 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 40us/step - loss: 2.8528e-04 - acc: 1.0000 - val_loss: 0.1372 - val_acc: 0.9667
 Epoch 150/150
-1437/1437 [==============================] - 0s 22us/step - loss: 0.0013 - acc: 1.0000 - val_loss: 0.1213 - val_acc: 0.9722
+1437/1437 [==============================] - 0s 39us/step - loss: 2.7869e-04 - acc: 1.0000 - val_loss: 0.1375 - val_acc: 0.9722
 
 acc: 97.22%
 </pre>
@@ -13692,7 +13739,7 @@ acc: 97.22%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[408]:</div>
+<div class="prompt input_prompt">In&nbsp;[434]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Odaberite 2 cifre koje su pogresno klasfikovane i prikazite ih - ukoliko tacnost nije 100%. </span>
@@ -13700,21 +13747,21 @@ acc: 97.22%
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
 
 <span class="n">test</span> <span class="o">=</span> <span class="n">Y_test</span> <span class="o">!=</span> <span class="n">predictions</span>
-<span class="n">wrongPredictionIndices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">wrong_prediction_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))[:,</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="n">wrongImage</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">wrongPredictionIndices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">wrong_image</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 <span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wrongImage</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wrong_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Should be &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">Y_test</span><span class="p">[</span><span class="n">wrongPredictionIndices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrongPredictionIndices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Should be &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">Y_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">wrongImage</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">wrongPredictionIndices</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">wrongImage</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 <span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
 <span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wrongImage</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Should be &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">Y_test</span><span class="p">[</span><span class="n">wrongPredictionIndices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrongPredictionIndices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Should be &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">Y_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 
     </div>
@@ -13731,10 +13778,10 @@ acc: 97.22%
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Should be 8
-Was 5
+<pre>Should be 9
+Was 8
 Should be 8
-Was 1
+Was 4
 </pre>
 </div>
 </div>
@@ -13747,39 +13794,13 @@ Was 1
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 
