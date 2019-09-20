@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>AOP_ispit_2019</title>
+<title>AOP_ispit_2019 (1)</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13131,15 +13131,16 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[354]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">keras.utils</span> <span class="k">import</span> <span class="n">np_utils</span>
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Dense</span>
@@ -13147,8 +13148,7 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Flatten</span>
 <span class="kn">from</span> <span class="nn">keras.layers.convolutional</span> <span class="k">import</span> <span class="n">Conv2D</span>
 <span class="kn">from</span> <span class="nn">keras.layers.convolutional</span> <span class="k">import</span> <span class="n">MaxPooling2D</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
 </pre></div>
 
     </div>
@@ -13158,21 +13158,21 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[356]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1.</span>
 <span class="c1"># Ucitati tabelu sa poenima studenata koji su ostvareni do 15.01.2019.</span>
 <span class="c1"># Fajl &quot;poeni.csv&quot; nalazi se na stranici predmeta u delu vezbe, zavrsno gradivo za ispit</span>
-<span class="c1">#</span>
+<span class="c1"># </span>
 <span class="c1"># 1.1 ucitati tabelu tako da u prvoj koloni imate ime i prezime, a zatim pet kolona</span>
 <span class="c1"># koji imaju sledece nazive: test_aop, prvi_kolokvijum, test_aop_2, drugi_kolokvijum, popravni</span>
 <span class="c1"># u slucaju da poeni nisu racionalni brojevi (npr. ? ili &lt;15) zameniti ove brojeve sa brojem 0</span>
 
 <span class="n">use_columns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 <span class="n">header_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ime_i_prezime&#39;</span><span class="p">,</span> <span class="s1">&#39;test_aop&#39;</span><span class="p">,</span> <span class="s1">&#39;prvi_kolokvijum&#39;</span><span class="p">,</span> <span class="s1">&#39;test_aop_2&#39;</span><span class="p">,</span> <span class="s1">&#39;drugi_kolokvijum&#39;</span><span class="p">,</span> <span class="s1">&#39;popravni&#39;</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;AOP_poeni_csv.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">use_columns</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">header_names</span><span class="p">)</span>
-<span class="n">data</span><span class="p">[</span><span class="n">header_names</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">header_names</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;AOP_poeni_csv.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">use_columns</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">header_names</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="n">header_names</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">header_names</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -13186,7 +13186,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[356]:</div>
+    <div class="prompt output_prompt">Out[73]:</div>
 
 
 
@@ -13278,7 +13278,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[346]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1.2. Dakle, </span>
@@ -13296,7 +13296,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[357]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Za Vas broj poena , pronaci razdaljine sa svim ostalim studentima u tabeli.</span>
@@ -13304,29 +13304,29 @@ div#notebook {
 <span class="c1">#1.4. Odstampati Vama tri najmanje slicna studenta prema ovom vektoru</span>
 
 <span class="k">def</span> <span class="nf">racunanje_distance</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>
-    <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+    <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
     
     <span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x1</span><span class="p">)):</span>
-        <span class="n">distance</span> <span class="o">+=</span><span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">x2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">distance</span> <span class="o">+=</span> <span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">x2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
     
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
-
-<span class="n">moj_vektor_poena</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Milos Babic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">ostali</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Milos Babic&#39;</span><span class="p">)</span>
+    
+<span class="n">moj_vektor_poena</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Marko Simijonovic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">ostali</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Marko Simijonovic&#39;</span><span class="p">)</span>
 
 <span class="n">rastojanja</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ostali</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rastojanja</span><span class="p">)):</span>
     <span class="n">rastojanja</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">racunanje_distance</span><span class="p">(</span><span class="n">moj_vektor_poena</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ostali</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-    
+
 <span class="n">rastojanja</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">rastojanja</span><span class="p">,</span> <span class="n">ostali</span><span class="p">)</span>
 <span class="n">sortirana_rastojanja</span> <span class="o">=</span> <span class="n">rastojanja</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Najvise slicni:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sortirana_rastojanja</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Najslicniji:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sortirana_rastojanja</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Najmanje slicni:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sortirana_rastojanja</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">sortirana_rastojanja</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Najmanje slicni&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sortirana_rastojanja</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">sortirana_rastojanja</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span>
 </pre></div>
 
     </div>
@@ -13343,10 +13343,18 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Najvise slicni:
-[&#39;Bojan Celic&#39; &#39;Jelena Arandjelovic&#39; &#39;Nikola Ilic&#39;]
-Najmanje slicni:
-[&#39;Nikola Panevski&#39; &#39;Dejan Bulaja&#39; &#39;Nevena Pavlovic&#39;]
+<pre>Najslicniji:
+ime_i_prezime
+Milos Stefanovic       7.810250
+Nikola Zivojinovic     9.486833
+Nikola Panevski       10.344080
+dtype: float64
+Najmanje slicni
+ime_i_prezime
+Stefan Stanojlovic    37.286056
+Nemanja Glisic        37.616486
+Pavle Strbac          39.143965
+dtype: float64
 </pre>
 </div>
 </div>
@@ -13357,7 +13365,7 @@ Najmanje slicni:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[362]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1.5 Primeniti na skup podataka algoritam kMeans. </span>
@@ -13367,7 +13375,6 @@ Najmanje slicni:
 <span class="c1"># Da li se mogu napraviti klasteri, koji ce pomoci automatskom ocenjivanju? </span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span>
-
 <span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">km</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
@@ -13377,7 +13384,7 @@ Najmanje slicni:
 <span class="n">k1</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">t2</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">k2</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">p</span>  <span class="o">=</span> <span class="mi">4</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">k1</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">k2</span>
@@ -13385,8 +13392,10 @@ Najmanje slicni:
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="n">x</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="n">y</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">centers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-    <span class="n">class_data</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">km</span><span class="o">.</span><span class="n">labels_</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">class_data</span><span class="p">[:,</span> <span class="n">x</span><span class="p">],</span> <span class="n">class_data</span><span class="p">[:,</span> <span class="n">y</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cividis&#39;</span><span class="p">)</span>
+    <span class="n">class_data</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">km</span><span class="o">.</span><span class="n">labels_</span><span class="o">==</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">class_data</span><span class="p">[:,</span> <span class="n">x</span><span class="p">],</span> <span class="n">class_data</span><span class="p">[:,</span> <span class="n">y</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13405,7 +13414,7 @@ Najmanje slicni:
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -13418,27 +13427,28 @@ Najmanje slicni:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[363]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># zadatak 2. </span>
 <span class="c1"># Fashion Mnist</span>
-<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fashion_mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-<span class="n">predmet1</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># trouser</span>
-<span class="n">predmet2</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Sandal</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">fashion_mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">predmet1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">predmet2</span><span class="p">)]</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">predmet1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">predmet2</span><span class="p">)]</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># trouser</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># sandal</span>
 
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">predmet1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">predmet2</span><span class="p">)]</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">predmet1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">predmet2</span><span class="p">)]</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[(</span><span class="n">y_train</span><span class="o">==</span><span class="n">p1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_train</span><span class="o">==</span><span class="n">p2</span><span class="p">)]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[(</span><span class="n">y_train</span><span class="o">==</span><span class="n">p1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_train</span><span class="o">==</span><span class="n">p2</span><span class="p">)]</span>
 
-<span class="n">y_train</span><span class="p">[</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">predmet2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">y_test</span><span class="p">[</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">predmet2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[(</span><span class="n">y_test</span><span class="o">==</span><span class="n">p1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_test</span><span class="o">==</span><span class="n">p2</span><span class="p">)]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[(</span><span class="n">y_test</span><span class="o">==</span><span class="n">p1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_test</span><span class="o">==</span><span class="n">p2</span><span class="p">)]</span>
 
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span> <span class="o">/</span> <span class="mi">255</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">y_train</span><span class="p">[</span><span class="n">y_train</span><span class="o">==</span><span class="n">p2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y_test</span><span class="p">[</span><span class="n">y_test</span><span class="o">==</span><span class="n">p2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span> <span class="o">/</span> <span class="mi">255</span>
 
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
@@ -13453,24 +13463,26 @@ Najmanje slicni:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[364]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 2.1.Izabrati 2 odevna predmeta po zelji i napravite neuronsku mrezu koja moze da ih klasifikuje. </span>
 <span class="c1"># Obucavanje mreze uraditi na trening skupu, a tacnost procenite na test skupu </span>
 
-<span class="k">def</span> <span class="nf">model_obicne_neuronske_mreze</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">model_neuronske_mreze</span><span class="p">():</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
     <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_pixels</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="n">num_pixels</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
     <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+    
     <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">model</span>
 
-<span class="n">X1_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_pixels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
-<span class="n">X1_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_pixels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">num_pixels</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">x1_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_pixels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">x1_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_pixels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">model_obicne_neuronske_mreze</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X1_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model_neuronske_mreze</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x1_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x1_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13489,38 +13501,38 @@ Najmanje slicni:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Train on 12000 samples, validate on 2000 samples
 Epoch 1/10
-12000/12000 [==============================] - 3s 214us/step - loss: 0.0331 - acc: 0.9848 - val_loss: 0.0032 - val_acc: 0.9985
+12000/12000 [==============================] - 2s 164us/step - loss: 0.0386 - acc: 0.9764 - val_loss: 0.0041 - val_acc: 0.9985
 Epoch 2/10
-12000/12000 [==============================] - 1s 88us/step - loss: 0.0022 - acc: 0.9992 - val_loss: 0.0024 - val_acc: 0.9990
+12000/12000 [==============================] - 1s 87us/step - loss: 0.0024 - acc: 0.9989 - val_loss: 0.0020 - val_acc: 0.9985
 Epoch 3/10
-12000/12000 [==============================] - 1s 89us/step - loss: 0.0011 - acc: 0.9997 - val_loss: 0.0020 - val_acc: 0.9990
+12000/12000 [==============================] - 1s 88us/step - loss: 9.4411e-04 - acc: 0.9997 - val_loss: 0.0030 - val_acc: 0.9990
 Epoch 4/10
-12000/12000 [==============================] - 1s 90us/step - loss: 4.7912e-04 - acc: 1.0000 - val_loss: 0.0019 - val_acc: 0.9990
+12000/12000 [==============================] - 1s 88us/step - loss: 6.9132e-04 - acc: 0.9998 - val_loss: 0.0026 - val_acc: 0.9990
 Epoch 5/10
-12000/12000 [==============================] - 1s 94us/step - loss: 3.0878e-04 - acc: 1.0000 - val_loss: 0.0013 - val_acc: 0.9995
+12000/12000 [==============================] - 1s 88us/step - loss: 3.6558e-04 - acc: 0.9999 - val_loss: 0.0020 - val_acc: 0.9995
 Epoch 6/10
-12000/12000 [==============================] - 1s 91us/step - loss: 1.9725e-04 - acc: 1.0000 - val_loss: 0.0017 - val_acc: 0.9995
+12000/12000 [==============================] - 1s 89us/step - loss: 2.1099e-04 - acc: 1.0000 - val_loss: 0.0019 - val_acc: 0.9995
 Epoch 7/10
-12000/12000 [==============================] - 1s 96us/step - loss: 1.4253e-04 - acc: 1.0000 - val_loss: 0.0015 - val_acc: 0.9995
+12000/12000 [==============================] - 1s 88us/step - loss: 1.5241e-04 - acc: 1.0000 - val_loss: 0.0022 - val_acc: 0.9995
 Epoch 8/10
-12000/12000 [==============================] - 1s 97us/step - loss: 1.0950e-04 - acc: 1.0000 - val_loss: 0.0014 - val_acc: 0.9995
+12000/12000 [==============================] - 1s 89us/step - loss: 1.1436e-04 - acc: 1.0000 - val_loss: 0.0020 - val_acc: 0.9995
 Epoch 9/10
-12000/12000 [==============================] - 1s 94us/step - loss: 8.4144e-05 - acc: 1.0000 - val_loss: 0.0017 - val_acc: 0.9995
+12000/12000 [==============================] - 1s 91us/step - loss: 9.0634e-05 - acc: 1.0000 - val_loss: 0.0021 - val_acc: 0.9995
 Epoch 10/10
-12000/12000 [==============================] - 1s 96us/step - loss: 6.8414e-05 - acc: 1.0000 - val_loss: 0.0014 - val_acc: 0.9995
+12000/12000 [==============================] - 1s 94us/step - loss: 7.1087e-05 - acc: 1.0000 - val_loss: 0.0022 - val_acc: 0.9995
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[364]:</div>
+    <div class="prompt output_prompt">Out[78]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;keras.callbacks.History at 0x261a40be080&gt;</pre>
+<pre>&lt;keras.callbacks.History at 0x201b15137b8&gt;</pre>
 </div>
 
 </div>
@@ -13531,11 +13543,11 @@ Epoch 10/10
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[365]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X2_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">%s</span><span class="s2">: </span><span class="si">%.2f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">metrics_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x1_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13552,8 +13564,7 @@ Epoch 10/10
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>
-acc: 99.95%
+<pre>99.95
 </pre>
 </div>
 </div>
@@ -13564,30 +13575,33 @@ acc: 99.95%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[366]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 2.2. Resiti zadatak koriscenjem konvolucione neuronske mreze. </span>
 <span class="c1"># 2.3. Da li se postize veca tacnost u poredjenju sa standardnom neuronskom mrezom ?</span>
+<span class="c1"># K.common.set_image_dim_ordering(&#39;th&#39;)</span>
+<span class="c1"># seed = 7</span>
+<span class="c1"># numpy.random.seed(seed)</span>
 
-<span class="k">def</span> <span class="nf">model_konvolucione_neuronske_mreze</span><span class="p">():</span>
-    <span class="c1"># create model</span>
+<span class="k">def</span> <span class="nf">model_knn</span><span class="p">():</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num_pixels</span><span class="p">,</span> <span class="n">num_pixels</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
     <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
     <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
     <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>
     <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
     <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+    
     <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">model</span>
 
-<span class="n">X2_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
-<span class="n">X2_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">num_pixels</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x2_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">x2_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">model_konvolucione_neuronske_mreze</span><span class="p">()</span>
-
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X2_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X2_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model_knn</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x2_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x2_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13606,22 +13620,22 @@ acc: 99.95%
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Train on 12000 samples, validate on 2000 samples
 Epoch 1/2
-12000/12000 [==============================] - 10s 860us/step - loss: 0.0309 - acc: 0.9870 - val_loss: 0.0019 - val_acc: 0.9990
+12000/12000 [==============================] - 9s 736us/step - loss: 0.0315 - acc: 0.9912 - val_loss: 0.0021 - val_acc: 0.9985
 Epoch 2/2
-12000/12000 [==============================] - 9s 757us/step - loss: 0.0020 - acc: 0.9994 - val_loss: 0.0017 - val_acc: 0.9990
+12000/12000 [==============================] - 8s 662us/step - loss: 0.0032 - acc: 0.9990 - val_loss: 8.0586e-04 - val_acc: 0.9995
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[366]:</div>
+    <div class="prompt output_prompt">Out[80]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;keras.callbacks.History at 0x26198bfa0b8&gt;</pre>
+<pre>&lt;keras.callbacks.History at 0x201b14c6f28&gt;</pre>
 </div>
 
 </div>
@@ -13632,11 +13646,11 @@ Epoch 2/2
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[367]:</div>
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X2_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">%s</span><span class="s2">: </span><span class="si">%.2f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">metrics_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x2_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13653,12 +13667,25 @@ Epoch 2/2
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>
-acc: 99.90%
+<pre>99.95
 </pre>
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[0]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 2.4. Za izbrana 2 predmeta / klase, nadjite srednju vrednost i iscrtajte ih. </span>
+<span class="c1"># dakle, potrebno je sve slike date klase &quot;sabrati&quot; po pikselima, a zatim ovu vrednost podeliti sa brojem elemenata klase</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
