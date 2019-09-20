@@ -13901,3 +13901,246 @@ div#notebook {
 
 
 </html>
+<span class="o">==</span> <span class="n">y_test</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test_prediction</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[166]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>86.28884826325411</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[167]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#4.4*. ukoliko bi se dodala jos jedna kolona, tako da temperatura predstavlja tri uzastopna dana, </span>
+<span class="c1">#     da li bi rezultati tacnosti klasifikacije bili veci.</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">values</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x0</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x2</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="p">:]</span>
+
+<span class="n">x_training</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">number_of_training_days</span><span class="p">]</span>
+<span class="n">y_training</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">number_of_training_days</span><span class="p">]</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">number_of_training_days</span><span class="p">:]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">number_of_training_days</span><span class="p">:]</span>
+
+<span class="n">LDA</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_training</span><span class="p">,</span> <span class="n">y_training</span><span class="p">)</span>
+
+<span class="n">test_prediction</span> <span class="o">=</span> <span class="n">LDA</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">test_prediction</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test_prediction</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[167]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>88.19762122598354</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#5. Ucitati iris dataset. Iscrtati ovaj dataset koristeci naredbe scatter(), tako da su odgovarajuce klase oznacene razlicitim bojama (recimo, red, green, blue).  </span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">datasets</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#5.1. podeliti dataset na trening i test, koristeci se iskljucivo naredbom shuffle. </span>
+
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+
+<span class="n">number_of_training_elements</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">))</span>
+<span class="n">training_indices</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[:</span><span class="n">number_of_training_elements</span><span class="p">]</span>
+<span class="n">test_indices</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">number_of_training_elements</span><span class="p">:]</span>
+
+<span class="n">x_training</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">training_indices</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">y_training</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">training_indices</span><span class="p">]</span>
+
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_indices</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">test_indices</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#5.2. izracunati tacnost na test skupu LDA klasifikatora. </span>
+
+<span class="n">LDA</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_training</span><span class="p">,</span> <span class="n">y_training</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">LDA</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span><span class="o">==</span><span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[171]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#5.3. podaci u matrici x imaju cetiri kolone koji predstavljaju odgovarajuce mere cveta. Koje 2 kombinacije ovih parametara daju po vama najvecu tacnost klasifikacije. Detaljno komentarisati i obrazloziti. (Uputstvo. recimo kolone 2 i 4 kada se same koriste za klasifikaciju, bolje su od ostalih parova kolona 1 i 2, ili 2 i 3 itd. ) </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[172]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Analiza i obrada podataka</span>
+<span class="c1"># zadatke sacuvati kao .ipynb i .html fajl. </span>
+<span class="c1"># fajlove nazvati &quot;ime_prezime_broj_indeksa&quot;</span>
+<span class="c1"># Fajlove nemojte dodavati u zipp datoteku. </span>
+<span class="c1"># Fajlove poslati na mmarjanovic@singidunum.ac.rs</span>
+
+
+<span class="c1"># Studenti koji su radili test mogu raditi zadatke 3, 4, i 5. </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[0]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+</body>
+
+ 
+
+
+</html>
