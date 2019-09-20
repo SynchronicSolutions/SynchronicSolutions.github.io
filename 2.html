@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>aop_II_kol_2019</title>
+<title>aop_II_kol_2019 (3)</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13133,173 +13133,22 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1. Ucitati iris dataset. </span>
-<span class="c1"># primeniti kMeans algoritam. </span>
-<span class="c1"># odstampati elemente iz klastera broj 1. </span>
-<span class="c1"># kolika je tacnost separacije? </span>
-<span class="c1"># iscratati na istoj slici i podatke i centre klastera. </span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[428]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">datasets</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span>
-<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
-
-<span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">km</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span>
-<span class="n">cluster_1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cluster_1</span><span class="p">)</span>
-
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
-
-<span class="n">centers</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">cluster_centers_</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[[6.9 3.1 4.9 1.5]
- [6.7 3.  5.  1.7]
- [6.3 3.3 6.  2.5]
- [7.1 3.  5.9 2.1]
- [6.3 2.9 5.6 1.8]
- [6.5 3.  5.8 2.2]
- [7.6 3.  6.6 2.1]
- [7.3 2.9 6.3 1.8]
- [6.7 2.5 5.8 1.8]
- [7.2 3.6 6.1 2.5]
- [6.5 3.2 5.1 2. ]
- [6.4 2.7 5.3 1.9]
- [6.8 3.  5.5 2.1]
- [6.4 3.2 5.3 2.3]
- [6.5 3.  5.5 1.8]
- [7.7 3.8 6.7 2.2]
- [7.7 2.6 6.9 2.3]
- [6.9 3.2 5.7 2.3]
- [7.7 2.8 6.7 2. ]
- [6.7 3.3 5.7 2.1]
- [7.2 3.2 6.  1.8]
- [6.4 2.8 5.6 2.1]
- [7.2 3.  5.8 1.6]
- [7.4 2.8 6.1 1.9]
- [7.9 3.8 6.4 2. ]
- [6.4 2.8 5.6 2.2]
- [6.1 2.6 5.6 1.4]
- [7.7 3.  6.1 2.3]
- [6.3 3.4 5.6 2.4]
- [6.4 3.1 5.5 1.8]
- [6.9 3.1 5.4 2.1]
- [6.7 3.1 5.6 2.4]
- [6.9 3.1 5.1 2.3]
- [6.8 3.2 5.9 2.3]
- [6.7 3.3 5.7 2.5]
- [6.7 3.  5.2 2.3]
- [6.5 3.  5.2 2. ]
- [6.2 3.4 5.4 2.3]]
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[428]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x2a6295e5dd8&gt;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[430]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 2. Izabrati dve cifre iz dataseta digits i napraviti novi dataset.</span>
-<span class="c1"># Neka ove dve cifre budu 2 poslednje cifre Vaseg indeks broja. </span>
-<span class="c1"># Podeliti novi skup   trening i test. </span>
-<span class="c1"># primeniti kNN i LDA algoritme i proceniti tacnost na test skupu. Odstampati tacnost. </span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">load_digits</span>
 <span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="k">import</span> <span class="n">LinearDiscriminantAnalysis</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
 
-<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">[(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">[(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)]</span>
-
-<span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
-
-<span class="n">X_training</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_training</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
-
-<span class="n">LDA</span> <span class="o">=</span> <span class="n">LinearDiscriminantAnalysis</span><span class="p">()</span>
-<span class="n">LDA</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_training</span><span class="p">,</span> <span class="n">Y_training</span><span class="p">)</span>
-
-<span class="n">LDAPrediction</span> <span class="o">=</span> <span class="n">LDA</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">LDAPrediction</span> <span class="o">==</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-
-<span class="n">KNN</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">KNN</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_training</span><span class="p">,</span> <span class="n">Y_training</span><span class="p">)</span>
-
-<span class="n">KNNPrediction</span> <span class="o">=</span> <span class="n">KNN</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">KNNPrediction</span> <span class="o">==</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">keras.utils</span> <span class="k">import</span> <span class="n">np_utils</span>
 </pre></div>
 
     </div>
@@ -13316,8 +13165,120 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\Milos\Anaconda3\lib\site-packages\sklearn\discriminant_analysis.py:388: UserWarning: Variables are collinear.
-  warnings.warn(&#34;Variables are collinear.&#34;)
+<pre>Using TensorFlow backend.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1. Ucitati iris dataset. </span>
+<span class="c1"># primeniti kMeans algoritam. </span>
+<span class="c1"># odstampati elemente iz klastera broj 1. </span>
+<span class="c1"># kolika je tacnost separacije? </span>
+<span class="c1"># iscratati na istoj slici i podatke i centre klastera. </span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">km</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span>
+<span class="n">cluster_1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cluster_1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">100</span><span class="p">:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="n">centers</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[7.  3.2 4.7 1.4]
+ [6.4 3.2 4.5 1.5]
+ [5.5 2.3 4.  1.3]
+ [6.5 2.8 4.6 1.5]
+ [5.7 2.8 4.5 1.3]
+ [6.3 3.3 4.7 1.6]
+ [4.9 2.4 3.3 1. ]
+ [6.6 2.9 4.6 1.3]
+ [5.2 2.7 3.9 1.4]
+ [5.  2.  3.5 1. ]
+ [5.9 3.  4.2 1.5]
+ [6.  2.2 4.  1. ]
+ [6.1 2.9 4.7 1.4]
+ [5.6 2.9 3.6 1.3]
+ [6.7 3.1 4.4 1.4]
+ [5.6 3.  4.5 1.5]
+ [5.8 2.7 4.1 1. ]
+ [6.2 2.2 4.5 1.5]
+ [5.6 2.5 3.9 1.1]
+ [5.9 3.2 4.8 1.8]
+ [6.1 2.8 4.  1.3]
+ [6.3 2.5 4.9 1.5]
+ [6.1 2.8 4.7 1.2]
+ [6.4 2.9 4.3 1.3]
+ [6.6 3.  4.4 1.4]
+ [6.8 2.8 4.8 1.4]
+ [6.  2.9 4.5 1.5]
+ [5.7 2.6 3.5 1. ]
+ [5.5 2.4 3.8 1.1]
+ [5.5 2.4 3.7 1. ]
+ [5.8 2.7 3.9 1.2]
+ [6.  2.7 5.1 1.6]
+ [5.4 3.  4.5 1.5]
+ [6.  3.4 4.5 1.6]
+ [6.7 3.1 4.7 1.5]
+ [6.3 2.3 4.4 1.3]
+ [5.6 3.  4.1 1.3]
+ [5.5 2.5 4.  1.3]
+ [5.5 2.6 4.4 1.2]
+ [6.1 3.  4.6 1.4]
+ [5.8 2.6 4.  1.2]
+ [5.  2.3 3.3 1. ]
+ [5.6 2.7 4.2 1.3]
+ [5.7 3.  4.2 1.2]
+ [5.7 2.9 4.2 1.3]
+ [6.2 2.9 4.3 1.3]
+ [5.1 2.5 3.  1.1]
+ [5.7 2.8 4.1 1.3]
+ [5.8 2.7 5.1 1.9]
+ [4.9 2.5 4.5 1.7]
+ [5.7 2.5 5.  2. ]
+ [5.8 2.8 5.1 2.4]
+ [6.  2.2 5.  1.5]
+ [5.6 2.8 4.9 2. ]
+ [6.3 2.7 4.9 1.8]
+ [6.2 2.8 4.8 1.8]
+ [6.1 3.  4.9 1.8]
+ [6.3 2.8 5.1 1.5]
+ [6.  3.  4.8 1.8]
+ [5.8 2.7 5.1 1.9]
+ [6.3 2.5 5.  1.9]
+ [5.9 3.  5.1 1.8]]
 </pre>
 </div>
 </div>
@@ -13327,12 +13288,49 @@ div#notebook {
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>95.27777777777777
-98.61111111111111
-</pre>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 2. Izabrati dve cifre iz dataseta digits i napraviti novi dataset.</span>
+<span class="c1"># Neka ove dve cifre budu 2 poslednje cifre Vaseg indeks broja. </span>
+<span class="c1"># Podeliti novi skup na trening i test. </span>
+<span class="c1"># primeniti kNN i LDA algoritme i proceniti tacnost na test skupu. Odstampati tacnost. </span>
+
+<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">[(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">[(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 
 <div class="output_area">
 
@@ -13355,61 +13353,88 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[431]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">LDA</span> <span class="o">=</span> <span class="n">LinearDiscriminantAnalysis</span><span class="p">()</span>
+<span class="n">LDA</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">KNN</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">KNN</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;LDA: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">LDA</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;KNN: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">KNN</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>LDA: 94.44444444444444
+KNN: 98.61111111111111
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\Milos\Anaconda3\lib\site-packages\sklearn\discriminant_analysis.py:388: UserWarning: Variables are collinear.
+  warnings.warn(&#34;Variables are collinear.&#34;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 3. Primeniti neuronsku mrezu na digits dataset. </span>
-
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Dense</span>
-<span class="kn">from</span> <span class="nn">keras.utils</span> <span class="k">import</span> <span class="n">np_utils</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[432]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># podeliti skup na trening i test.</span>
+<span class="c1"># podeliti skup na trening i test.</span>
 <span class="c1"># Koju strukturu predlazete ? </span>
+<span class="c1"># Kolika je tacnost na test skupu?</span>
+<span class="c1"># Odaberite 2 cifre koje su pogresno klasfikovane i prikazite ih - ukoliko tacnost nije 100%. </span>
+
 <span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
-<span class="n">Y_train</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">Y_train</span><span class="p">)</span>
-<span class="n">Y_test</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
 
-<span class="n">num_pixels</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">num_classes</span> <span class="o">=</span> <span class="n">Y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
+<span class="n">num_pixels</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">num_classes</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-    </div>
-</div>
-</div>
+<span class="k">def</span> <span class="nf">base_model</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_pixels</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="n">num_pixels</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">model</span>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[433]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Kolika je tacnost na test skupu?</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_pixels</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="n">num_pixels</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
-
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-
-<span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">%s</span><span class="s2">: </span><span class="si">%.2f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">metrics_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13426,310 +13451,171 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train on 1437 samples, validate on 360 samples
+<pre>(1437, 64)
+Train on 1437 samples, validate on 360 samples
 Epoch 1/150
-1437/1437 [==============================] - 3s 2ms/step - loss: 1.7691 - acc: 0.4475 - val_loss: 1.1058 - val_acc: 0.6917
+1437/1437 [==============================] - 0s 226us/step - loss: 1.6024 - acc: 0.5644 - val_loss: 0.9230 - val_acc: 0.8778
 Epoch 2/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.6931 - acc: 0.8372 - val_loss: 0.5151 - val_acc: 0.8639
+1437/1437 [==============================] - 0s 24us/step - loss: 0.5999 - acc: 0.8928 - val_loss: 0.4144 - val_acc: 0.9278
 Epoch 3/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.3618 - acc: 0.9290 - val_loss: 0.3597 - val_acc: 0.8917
+1437/1437 [==============================] - 0s 24us/step - loss: 0.3039 - acc: 0.9395 - val_loss: 0.2813 - val_acc: 0.9389
 Epoch 4/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.2485 - acc: 0.9443 - val_loss: 0.2660 - val_acc: 0.9167
+1437/1437 [==============================] - 0s 24us/step - loss: 0.2024 - acc: 0.9603 - val_loss: 0.2348 - val_acc: 0.9500
 Epoch 5/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.1867 - acc: 0.9582 - val_loss: 0.2275 - val_acc: 0.9361
+1437/1437 [==============================] - 0s 24us/step - loss: 0.1602 - acc: 0.9687 - val_loss: 0.1971 - val_acc: 0.9361
 Epoch 6/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.1511 - acc: 0.9694 - val_loss: 0.2007 - val_acc: 0.9333
+1437/1437 [==============================] - 0s 24us/step - loss: 0.1350 - acc: 0.9715 - val_loss: 0.1675 - val_acc: 0.9556
 Epoch 7/150
-1437/1437 [==============================] - 0s 43us/step - loss: 0.1330 - acc: 0.9729 - val_loss: 0.1878 - val_acc: 0.9500
+1437/1437 [==============================] - 0s 25us/step - loss: 0.1135 - acc: 0.9798 - val_loss: 0.1516 - val_acc: 0.9639
 Epoch 8/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.1104 - acc: 0.9812 - val_loss: 0.1820 - val_acc: 0.9528
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0991 - acc: 0.9784 - val_loss: 0.1473 - val_acc: 0.9556
 Epoch 9/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0979 - acc: 0.9791 - val_loss: 0.1584 - val_acc: 0.9583
+1437/1437 [==============================] - 0s 22us/step - loss: 0.0867 - acc: 0.9833 - val_loss: 0.1327 - val_acc: 0.9583
 Epoch 10/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0852 - acc: 0.9861 - val_loss: 0.1552 - val_acc: 0.9500
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0787 - acc: 0.9840 - val_loss: 0.1228 - val_acc: 0.9722
 Epoch 11/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0739 - acc: 0.9875 - val_loss: 0.1500 - val_acc: 0.9583
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0684 - acc: 0.9896 - val_loss: 0.1139 - val_acc: 0.9722
 Epoch 12/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0676 - acc: 0.9910 - val_loss: 0.1355 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 25us/step - loss: 0.0624 - acc: 0.9889 - val_loss: 0.1150 - val_acc: 0.9611
 Epoch 13/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0608 - acc: 0.9916 - val_loss: 0.1437 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0560 - acc: 0.9930 - val_loss: 0.1140 - val_acc: 0.9667
 Epoch 14/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0519 - acc: 0.9965 - val_loss: 0.1344 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 25us/step - loss: 0.0512 - acc: 0.9944 - val_loss: 0.1035 - val_acc: 0.9750
 Epoch 15/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0483 - acc: 0.9937 - val_loss: 0.1272 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0467 - acc: 0.9937 - val_loss: 0.0987 - val_acc: 0.9750
 Epoch 16/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0454 - acc: 0.9972 - val_loss: 0.1237 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0427 - acc: 0.9951 - val_loss: 0.0976 - val_acc: 0.9750
 Epoch 17/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0393 - acc: 0.9965 - val_loss: 0.1248 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0397 - acc: 0.9965 - val_loss: 0.0977 - val_acc: 0.9750
 Epoch 18/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0359 - acc: 0.9965 - val_loss: 0.1293 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0365 - acc: 0.9965 - val_loss: 0.0896 - val_acc: 0.9750
 Epoch 19/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0341 - acc: 0.9972 - val_loss: 0.1240 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 22us/step - loss: 0.0349 - acc: 0.9944 - val_loss: 0.0932 - val_acc: 0.9667
 Epoch 20/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0316 - acc: 0.9965 - val_loss: 0.1185 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0314 - acc: 0.9958 - val_loss: 0.0976 - val_acc: 0.9750
 Epoch 21/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0285 - acc: 0.9986 - val_loss: 0.1185 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0283 - acc: 0.9972 - val_loss: 0.0969 - val_acc: 0.9778
 Epoch 22/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0254 - acc: 0.9986 - val_loss: 0.1232 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0272 - acc: 0.9972 - val_loss: 0.0848 - val_acc: 0.9833
 Epoch 23/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0233 - acc: 0.9986 - val_loss: 0.1248 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 25us/step - loss: 0.0267 - acc: 0.9972 - val_loss: 0.0834 - val_acc: 0.9750
 Epoch 24/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0218 - acc: 0.9993 - val_loss: 0.1250 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 25us/step - loss: 0.0225 - acc: 0.9972 - val_loss: 0.0896 - val_acc: 0.9778
 Epoch 25/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0201 - acc: 0.9993 - val_loss: 0.1197 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0206 - acc: 0.9986 - val_loss: 0.0832 - val_acc: 0.9833
 Epoch 26/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0183 - acc: 0.9986 - val_loss: 0.1279 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0202 - acc: 0.9979 - val_loss: 0.0766 - val_acc: 0.9833
 Epoch 27/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0179 - acc: 0.9993 - val_loss: 0.1218 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0171 - acc: 0.9986 - val_loss: 0.0825 - val_acc: 0.9750
 Epoch 28/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0157 - acc: 0.9993 - val_loss: 0.1166 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0163 - acc: 0.9986 - val_loss: 0.0802 - val_acc: 0.9861
 Epoch 29/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0154 - acc: 0.9986 - val_loss: 0.1177 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 22us/step - loss: 0.0158 - acc: 0.9986 - val_loss: 0.0807 - val_acc: 0.9778
 Epoch 30/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0137 - acc: 0.9993 - val_loss: 0.1174 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 22us/step - loss: 0.0150 - acc: 0.9979 - val_loss: 0.0829 - val_acc: 0.9833
 Epoch 31/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0132 - acc: 0.9993 - val_loss: 0.1230 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0138 - acc: 0.9993 - val_loss: 0.0853 - val_acc: 0.9833
 Epoch 32/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0120 - acc: 1.0000 - val_loss: 0.1186 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0141 - acc: 0.9986 - val_loss: 0.0777 - val_acc: 0.9833
 Epoch 33/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0121 - acc: 0.9993 - val_loss: 0.1180 - val_acc: 0.9583
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0133 - acc: 0.9993 - val_loss: 0.0769 - val_acc: 0.9861
 Epoch 34/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0114 - acc: 0.9993 - val_loss: 0.1201 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0117 - acc: 1.0000 - val_loss: 0.0843 - val_acc: 0.9750
 Epoch 35/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0098 - acc: 1.0000 - val_loss: 0.1196 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 26us/step - loss: 0.0110 - acc: 0.9993 - val_loss: 0.0794 - val_acc: 0.9861
 Epoch 36/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0102 - acc: 0.9993 - val_loss: 0.1182 - val_acc: 0.9611
+1437/1437 [==============================] - ETA: 0s - loss: 0.0052 - acc: 1.000 - 0s 24us/step - loss: 0.0100 - acc: 1.0000 - val_loss: 0.0809 - val_acc: 0.9861
 Epoch 37/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0092 - acc: 1.0000 - val_loss: 0.1169 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 26us/step - loss: 0.0091 - acc: 1.0000 - val_loss: 0.0779 - val_acc: 0.9861
 Epoch 38/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0088 - acc: 1.0000 - val_loss: 0.1174 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 22us/step - loss: 0.0087 - acc: 1.0000 - val_loss: 0.0772 - val_acc: 0.9833
 Epoch 39/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0082 - acc: 1.0000 - val_loss: 0.1177 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0083 - acc: 1.0000 - val_loss: 0.0784 - val_acc: 0.9861
 Epoch 40/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0077 - acc: 1.0000 - val_loss: 0.1205 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0079 - acc: 1.0000 - val_loss: 0.0790 - val_acc: 0.9833
 Epoch 41/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0069 - acc: 1.0000 - val_loss: 0.1191 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0088 - acc: 1.0000 - val_loss: 0.0782 - val_acc: 0.9861
 Epoch 42/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0065 - acc: 1.0000 - val_loss: 0.1181 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 24us/step - loss: 0.0084 - acc: 1.0000 - val_loss: 0.0771 - val_acc: 0.9861
 Epoch 43/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0064 - acc: 1.0000 - val_loss: 0.1211 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 22us/step - loss: 0.0072 - acc: 1.0000 - val_loss: 0.0764 - val_acc: 0.9861
 Epoch 44/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0060 - acc: 1.0000 - val_loss: 0.1199 - val_acc: 0.9667
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0063 - acc: 1.0000 - val_loss: 0.0774 - val_acc: 0.9833
 Epoch 45/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0056 - acc: 1.0000 - val_loss: 0.1182 - val_acc: 0.9639
+1437/1437 [==============================] - 0s 23us/step - loss: 0.0058 - acc: 1.0000 - val_loss: 0.0817 - val_acc: 0.9861
 Epoch 46/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0053 - acc: 1.0000 - val_loss: 0.1214 - val_acc: 0.9611
+1437/1437 [==============================] - 0s 22us/step - loss: 0.0066 - acc: 1.0000 - val_loss: 0.0787 - val_acc: 0.9833
 Epoch 47/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0051 - acc: 1.0000 - val_loss: 0.1183 - val_acc: 0.9639
-Epoch 48/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0049 - acc: 1.0000 - val_loss: 0.1196 - val_acc: 0.9639
-Epoch 49/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0047 - acc: 1.0000 - val_loss: 0.1223 - val_acc: 0.9611
-Epoch 50/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0044 - acc: 1.0000 - val_loss: 0.1197 - val_acc: 0.9639
-Epoch 51/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0046 - acc: 1.0000 - val_loss: 0.1208 - val_acc: 0.9639
-Epoch 52/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0048 - acc: 1.0000 - val_loss: 0.1238 - val_acc: 0.9611
-Epoch 53/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0043 - acc: 1.0000 - val_loss: 0.1246 - val_acc: 0.9639
-Epoch 54/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0038 - acc: 1.0000 - val_loss: 0.1232 - val_acc: 0.9611
-Epoch 55/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0036 - acc: 1.0000 - val_loss: 0.1209 - val_acc: 0.9611
-Epoch 56/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0035 - acc: 1.0000 - val_loss: 0.1210 - val_acc: 0.9639
-Epoch 57/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0033 - acc: 1.0000 - val_loss: 0.1214 - val_acc: 0.9639
-Epoch 58/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0033 - acc: 1.0000 - val_loss: 0.1215 - val_acc: 0.9639
-Epoch 59/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0030 - acc: 1.0000 - val_loss: 0.1230 - val_acc: 0.9639
-Epoch 60/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0030 - acc: 1.0000 - val_loss: 0.1222 - val_acc: 0.9639
-Epoch 61/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0028 - acc: 1.0000 - val_loss: 0.1219 - val_acc: 0.9639
-Epoch 62/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0028 - acc: 1.0000 - val_loss: 0.1222 - val_acc: 0.9694
-Epoch 63/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0026 - acc: 1.0000 - val_loss: 0.1223 - val_acc: 0.9667
-Epoch 64/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0025 - acc: 1.0000 - val_loss: 0.1223 - val_acc: 0.9639
-Epoch 65/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0024 - acc: 1.0000 - val_loss: 0.1233 - val_acc: 0.9694
-Epoch 66/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0024 - acc: 1.0000 - val_loss: 0.1225 - val_acc: 0.9611
-Epoch 67/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0023 - acc: 1.0000 - val_loss: 0.1221 - val_acc: 0.9639
-Epoch 68/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0022 - acc: 1.0000 - val_loss: 0.1230 - val_acc: 0.9639
-Epoch 69/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0022 - acc: 1.0000 - val_loss: 0.1254 - val_acc: 0.9694
-Epoch 70/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0020 - acc: 1.0000 - val_loss: 0.1238 - val_acc: 0.9611
-Epoch 71/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0021 - acc: 1.0000 - val_loss: 0.1253 - val_acc: 0.9667
-Epoch 72/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0019 - acc: 1.0000 - val_loss: 0.1243 - val_acc: 0.9639
-Epoch 73/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0019 - acc: 1.0000 - val_loss: 0.1235 - val_acc: 0.9694
-Epoch 74/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1262 - val_acc: 0.9611
-Epoch 75/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0018 - acc: 1.0000 - val_loss: 0.1255 - val_acc: 0.9639
-Epoch 76/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0017 - acc: 1.0000 - val_loss: 0.1231 - val_acc: 0.9667
-Epoch 77/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0017 - acc: 1.0000 - val_loss: 0.1261 - val_acc: 0.9611
-Epoch 78/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0016 - acc: 1.0000 - val_loss: 0.1227 - val_acc: 0.9639
-Epoch 79/150
-1437/1437 [==============================] - 0s 35us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1252 - val_acc: 0.9639
-Epoch 80/150
-1437/1437 [==============================] - 0s 39us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1250 - val_acc: 0.9639
-Epoch 81/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0015 - acc: 1.0000 - val_loss: 0.1253 - val_acc: 0.9639
-Epoch 82/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0014 - acc: 1.0000 - val_loss: 0.1258 - val_acc: 0.9639
-Epoch 83/150
-1437/1437 [==============================] - 0s 38us/step - loss: 0.0014 - acc: 1.0000 - val_loss: 0.1272 - val_acc: 0.9639
-Epoch 84/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0013 - acc: 1.0000 - val_loss: 0.1266 - val_acc: 0.9667
-Epoch 85/150
-1437/1437 [==============================] - 0s 35us/step - loss: 0.0013 - acc: 1.0000 - val_loss: 0.1269 - val_acc: 0.9667
-Epoch 86/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0012 - acc: 1.0000 - val_loss: 0.1264 - val_acc: 0.9639
-Epoch 87/150
-1437/1437 [==============================] - 0s 40us/step - loss: 0.0012 - acc: 1.0000 - val_loss: 0.1284 - val_acc: 0.9667
-Epoch 88/150
-1437/1437 [==============================] - 0s 36us/step - loss: 0.0012 - acc: 1.0000 - val_loss: 0.1267 - val_acc: 0.9639
-Epoch 89/150
-1437/1437 [==============================] - 0s 35us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1280 - val_acc: 0.9639
-Epoch 90/150
-1437/1437 [==============================] - 0s 37us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1285 - val_acc: 0.9694
-Epoch 91/150
-1437/1437 [==============================] - 0s 42us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1267 - val_acc: 0.9694
-Epoch 92/150
-1437/1437 [==============================] - 0s 49us/step - loss: 0.0011 - acc: 1.0000 - val_loss: 0.1269 - val_acc: 0.9667
-Epoch 93/150
-1437/1437 [==============================] - 0s 43us/step - loss: 0.0010 - acc: 1.0000 - val_loss: 0.1282 - val_acc: 0.9639
-Epoch 94/150
-1437/1437 [==============================] - 0s 42us/step - loss: 0.0010 - acc: 1.0000 - val_loss: 0.1277 - val_acc: 0.9667
-Epoch 95/150
-1437/1437 [==============================] - 0s 42us/step - loss: 9.8565e-04 - acc: 1.0000 - val_loss: 0.1276 - val_acc: 0.9694
-Epoch 96/150
-1437/1437 [==============================] - 0s 44us/step - loss: 9.7761e-04 - acc: 1.0000 - val_loss: 0.1281 - val_acc: 0.9667
-Epoch 97/150
-1437/1437 [==============================] - 0s 42us/step - loss: 9.4424e-04 - acc: 1.0000 - val_loss: 0.1292 - val_acc: 0.9667
-Epoch 98/150
-1437/1437 [==============================] - 0s 44us/step - loss: 9.2248e-04 - acc: 1.0000 - val_loss: 0.1295 - val_acc: 0.9667
-Epoch 99/150
-1437/1437 [==============================] - 0s 47us/step - loss: 9.0754e-04 - acc: 1.0000 - val_loss: 0.1287 - val_acc: 0.9667
-Epoch 100/150
-1437/1437 [==============================] - 0s 42us/step - loss: 8.5580e-04 - acc: 1.0000 - val_loss: 0.1300 - val_acc: 0.9639
-Epoch 101/150
-1437/1437 [==============================] - 0s 36us/step - loss: 8.4886e-04 - acc: 1.0000 - val_loss: 0.1290 - val_acc: 0.9667
-Epoch 102/150
-1437/1437 [==============================] - 0s 38us/step - loss: 8.1247e-04 - acc: 1.0000 - val_loss: 0.1292 - val_acc: 0.9667
-Epoch 103/150
-1437/1437 [==============================] - 0s 40us/step - loss: 7.9134e-04 - acc: 1.0000 - val_loss: 0.1291 - val_acc: 0.9667
-Epoch 104/150
-1437/1437 [==============================] - 0s 41us/step - loss: 8.1667e-04 - acc: 1.0000 - val_loss: 0.1297 - val_acc: 0.9639
-Epoch 105/150
-1437/1437 [==============================] - 0s 37us/step - loss: 7.5255e-04 - acc: 1.0000 - val_loss: 0.1302 - val_acc: 0.9667
-Epoch 106/150
-1437/1437 [==============================] - 0s 39us/step - loss: 7.4268e-04 - acc: 1.0000 - val_loss: 0.1304 - val_acc: 0.9667
-Epoch 107/150
-1437/1437 [==============================] - 0s 40us/step - loss: 7.2513e-04 - acc: 1.0000 - val_loss: 0.1303 - val_acc: 0.9667
-Epoch 108/150
-1437/1437 [==============================] - 0s 38us/step - loss: 7.0892e-04 - acc: 1.0000 - val_loss: 0.1311 - val_acc: 0.9639
-Epoch 109/150
-1437/1437 [==============================] - 0s 38us/step - loss: 6.8842e-04 - acc: 1.0000 - val_loss: 0.1311 - val_acc: 0.9667
-Epoch 110/150
-1437/1437 [==============================] - 0s 36us/step - loss: 6.6172e-04 - acc: 1.0000 - val_loss: 0.1298 - val_acc: 0.9694
-Epoch 111/150
-1437/1437 [==============================] - 0s 37us/step - loss: 6.4891e-04 - acc: 1.0000 - val_loss: 0.1315 - val_acc: 0.9667
-Epoch 112/150
-1437/1437 [==============================] - 0s 39us/step - loss: 6.3792e-04 - acc: 1.0000 - val_loss: 0.1313 - val_acc: 0.9639
-Epoch 113/150
-1437/1437 [==============================] - 0s 39us/step - loss: 6.3424e-04 - acc: 1.0000 - val_loss: 0.1313 - val_acc: 0.9667
-Epoch 114/150
-1437/1437 [==============================] - 0s 44us/step - loss: 6.1369e-04 - acc: 1.0000 - val_loss: 0.1326 - val_acc: 0.9667
-Epoch 115/150
-1437/1437 [==============================] - 0s 49us/step - loss: 6.0709e-04 - acc: 1.0000 - val_loss: 0.1324 - val_acc: 0.9694
-Epoch 116/150
-1437/1437 [==============================] - 0s 50us/step - loss: 5.7777e-04 - acc: 1.0000 - val_loss: 0.1314 - val_acc: 0.9667
-Epoch 117/150
-1437/1437 [==============================] - 0s 51us/step - loss: 5.7182e-04 - acc: 1.0000 - val_loss: 0.1324 - val_acc: 0.9694
-Epoch 118/150
-1437/1437 [==============================] - 0s 45us/step - loss: 5.5342e-04 - acc: 1.0000 - val_loss: 0.1314 - val_acc: 0.9667
-Epoch 119/150
-1437/1437 [==============================] - 0s 44us/step - loss: 5.4304e-04 - acc: 1.0000 - val_loss: 0.1335 - val_acc: 0.9694
-Epoch 120/150
-1437/1437 [==============================] - 0s 43us/step - loss: 5.2445e-04 - acc: 1.0000 - val_loss: 0.1332 - val_acc: 0.9667
-Epoch 121/150
-1437/1437 [==============================] - 0s 42us/step - loss: 5.1599e-04 - acc: 1.0000 - val_loss: 0.1339 - val_acc: 0.9667
-Epoch 122/150
-1437/1437 [==============================] - 0s 38us/step - loss: 5.0651e-04 - acc: 1.0000 - val_loss: 0.1329 - val_acc: 0.9694
-Epoch 123/150
-1437/1437 [==============================] - 0s 40us/step - loss: 4.9460e-04 - acc: 1.0000 - val_loss: 0.1339 - val_acc: 0.9694
-Epoch 124/150
-1437/1437 [==============================] - 0s 38us/step - loss: 4.8665e-04 - acc: 1.0000 - val_loss: 0.1333 - val_acc: 0.9694
-Epoch 125/150
-1437/1437 [==============================] - 0s 40us/step - loss: 4.7612e-04 - acc: 1.0000 - val_loss: 0.1339 - val_acc: 0.9667
-Epoch 126/150
-1437/1437 [==============================] - 0s 40us/step - loss: 4.7070e-04 - acc: 1.0000 - val_loss: 0.1328 - val_acc: 0.9694
-Epoch 127/150
-1437/1437 [==============================] - 0s 40us/step - loss: 4.4899e-04 - acc: 1.0000 - val_loss: 0.1337 - val_acc: 0.9667
-Epoch 128/150
-1437/1437 [==============================] - 0s 36us/step - loss: 4.4364e-04 - acc: 1.0000 - val_loss: 0.1336 - val_acc: 0.9667
-Epoch 129/150
-1437/1437 [==============================] - 0s 37us/step - loss: 4.3131e-04 - acc: 1.0000 - val_loss: 0.1345 - val_acc: 0.9667
-Epoch 130/150
-1437/1437 [==============================] - 0s 35us/step - loss: 4.1948e-04 - acc: 1.0000 - val_loss: 0.1341 - val_acc: 0.9694
-Epoch 131/150
-1437/1437 [==============================] - 0s 37us/step - loss: 4.1267e-04 - acc: 1.0000 - val_loss: 0.1346 - val_acc: 0.9694
-Epoch 132/150
-1437/1437 [==============================] - 0s 38us/step - loss: 3.9666e-04 - acc: 1.0000 - val_loss: 0.1350 - val_acc: 0.9667
-Epoch 133/150
-1437/1437 [==============================] - 0s 36us/step - loss: 3.9058e-04 - acc: 1.0000 - val_loss: 0.1353 - val_acc: 0.9694
-Epoch 134/150
-1437/1437 [==============================] - 0s 35us/step - loss: 3.8780e-04 - acc: 1.0000 - val_loss: 0.1347 - val_acc: 0.9694
-Epoch 135/150
-1437/1437 [==============================] - 0s 35us/step - loss: 3.7907e-04 - acc: 1.0000 - val_loss: 0.1349 - val_acc: 0.9694
-Epoch 136/150
-1437/1437 [==============================] - 0s 38us/step - loss: 3.6912e-04 - acc: 1.0000 - val_loss: 0.1353 - val_acc: 0.9694
-Epoch 137/150
-1437/1437 [==============================] - 0s 39us/step - loss: 3.6828e-04 - acc: 1.0000 - val_loss: 0.1351 - val_acc: 0.9694
-Epoch 138/150
-1437/1437 [==============================] - 0s 42us/step - loss: 3.6351e-04 - acc: 1.0000 - val_loss: 0.1358 - val_acc: 0.9667
-Epoch 139/150
-1437/1437 [==============================] - 0s 38us/step - loss: 3.4679e-04 - acc: 1.0000 - val_loss: 0.1361 - val_acc: 0.9722
-Epoch 140/150
-1437/1437 [==============================] - 0s 40us/step - loss: 3.3905e-04 - acc: 1.0000 - val_loss: 0.1364 - val_acc: 0.9694
-Epoch 141/150
-1437/1437 [==============================] - 0s 39us/step - loss: 3.3221e-04 - acc: 1.0000 - val_loss: 0.1368 - val_acc: 0.9667
-Epoch 142/150
-1437/1437 [==============================] - 0s 39us/step - loss: 3.2492e-04 - acc: 1.0000 - val_loss: 0.1366 - val_acc: 0.9667
-Epoch 143/150
-1437/1437 [==============================] - 0s 39us/step - loss: 3.2167e-04 - acc: 1.0000 - val_loss: 0.1374 - val_acc: 0.9667
-Epoch 144/150
-1437/1437 [==============================] - 0s 42us/step - loss: 3.1126e-04 - acc: 1.0000 - val_loss: 0.1361 - val_acc: 0.9722
-Epoch 145/150
-1437/1437 [==============================] - 0s 42us/step - loss: 3.0966e-04 - acc: 1.0000 - val_loss: 0.1365 - val_acc: 0.9694
-Epoch 146/150
-1437/1437 [==============================] - 0s 39us/step - loss: 3.0049e-04 - acc: 1.0000 - val_loss: 0.1370 - val_acc: 0.9667
-Epoch 147/150
-1437/1437 [==============================] - ETA: 0s - loss: 2.2150e-04 - acc: 1.000 - 0s 38us/step - loss: 2.9700e-04 - acc: 1.0000 - val_loss: 0.1378 - val_acc: 0.9722
-Epoch 148/150
-1437/1437 [==============================] - 0s 40us/step - loss: 2.9000e-04 - acc: 1.0000 - val_loss: 0.1375 - val_acc: 0.9694
-Epoch 149/150
-1437/1437 [==============================] - 0s 40us/step - loss: 2.8528e-04 - acc: 1.0000 - val_loss: 0.1372 - val_acc: 0.9667
-Epoch 150/150
-1437/1437 [==============================] - 0s 39us/step - loss: 2.7869e-04 - acc: 1.0000 - val_loss: 0.1375 - val_acc: 0.9722
+  50/1437 [&gt;.............................] - ETA: 0s - loss: 0.0091 - acc: 1.0000</pre>
+</div>
+</div>
 
-acc: 97.22%
-</pre>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-37-ba7357a7d6c6&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">     21</span> 
+<span class="ansi-green-fg">     22</span> model <span class="ansi-yellow-intense-fg ansi-bold">=</span> base_model<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 23</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>model<span class="ansi-yellow-intense-fg ansi-bold">.</span>fit<span class="ansi-yellow-intense-fg ansi-bold">(</span>x_train<span class="ansi-yellow-intense-fg ansi-bold">,</span> y_train<span class="ansi-yellow-intense-fg ansi-bold">,</span> validation_data<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-yellow-intense-fg ansi-bold">(</span>x_test<span class="ansi-yellow-intense-fg ansi-bold">,</span> y_test<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> epochs<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">150</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> batch_size<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">50</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     24</span> 
+<span class="ansi-green-fg">     25</span> scores <span class="ansi-yellow-intense-fg ansi-bold">=</span> model<span class="ansi-yellow-intense-fg ansi-bold">.</span>evaluate<span class="ansi-yellow-intense-fg ansi-bold">(</span>x_test<span class="ansi-yellow-intense-fg ansi-bold">,</span> y_test<span class="ansi-yellow-intense-fg ansi-bold">,</span> verbose<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\keras\engine\training.py</span> in <span class="ansi-cyan-fg">fit</span><span class="ansi-blue-intense-fg ansi-bold">(self, x, y, batch_size, epochs, verbose, callbacks, validation_split, validation_data, shuffle, class_weight, sample_weight, initial_epoch, steps_per_epoch, validation_steps, validation_freq, max_queue_size, workers, use_multiprocessing, **kwargs)</span>
+<span class="ansi-green-fg">   1176</span>                                         steps_per_epoch<span class="ansi-yellow-intense-fg ansi-bold">=</span>steps_per_epoch<span class="ansi-yellow-intense-fg ansi-bold">,</span>
+<span class="ansi-green-fg">   1177</span>                                         validation_steps<span class="ansi-yellow-intense-fg ansi-bold">=</span>validation_steps<span class="ansi-yellow-intense-fg ansi-bold">,</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1178</span><span class="ansi-yellow-intense-fg ansi-bold">                                         validation_freq=validation_freq)
+</span><span class="ansi-green-fg">   1179</span> 
+<span class="ansi-green-fg">   1180</span>     def evaluate(self,
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\keras\engine\training_arrays.py</span> in <span class="ansi-cyan-fg">fit_loop</span><span class="ansi-blue-intense-fg ansi-bold">(model, fit_function, fit_inputs, out_labels, batch_size, epochs, verbose, callbacks, val_function, val_inputs, shuffle, callback_metrics, initial_epoch, steps_per_epoch, validation_steps, validation_freq)</span>
+<span class="ansi-green-fg">    198</span>                                     &#39;pass shuffle=&#34;batch&#34;.&#39;)
+<span class="ansi-green-fg">    199</span>                 batch_logs <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">{</span><span class="ansi-blue-intense-fg ansi-bold">&#39;batch&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">:</span> batch_index<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;size&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">:</span> len<span class="ansi-yellow-intense-fg ansi-bold">(</span>batch_ids<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">}</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 200</span><span class="ansi-yellow-intense-fg ansi-bold">                 </span>callbacks<span class="ansi-yellow-intense-fg ansi-bold">.</span>_call_batch_hook<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;train&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;begin&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> batch_index<span class="ansi-yellow-intense-fg ansi-bold">,</span> batch_logs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    201</span>                 <span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> indices_for_conversion_to_dense<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    202</span>                     ins_batch<span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> ins_batch<span class="ansi-yellow-intense-fg ansi-bold">[</span>i<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>toarray<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\keras\callbacks.py</span> in <span class="ansi-cyan-fg">_call_batch_hook</span><span class="ansi-blue-intense-fg ansi-bold">(self, mode, hook, batch, logs)</span>
+<span class="ansi-green-fg">     86</span>         self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_delta_ts<span class="ansi-yellow-intense-fg ansi-bold">[</span>hook_name<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>append<span class="ansi-yellow-intense-fg ansi-bold">(</span>time<span class="ansi-yellow-intense-fg ansi-bold">.</span>time<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span> t_before_callbacks<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     87</span> 
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 88</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>delta_t_median <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>median<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_delta_ts<span class="ansi-yellow-intense-fg ansi-bold">[</span>hook_name<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     89</span>         if (self._delta_t_batch &gt; 0. and
+<span class="ansi-green-fg">     90</span>            delta_t_median <span class="ansi-yellow-intense-fg ansi-bold">&gt;</span> <span class="ansi-cyan-intense-fg ansi-bold">0.95</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_delta_t_batch <span class="ansi-green-intense-fg ansi-bold">and</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\numpy\lib\function_base.py</span> in <span class="ansi-cyan-fg">median</span><span class="ansi-blue-intense-fg ansi-bold">(a, axis, out, overwrite_input, keepdims)</span>
+<span class="ansi-green-fg">   3495</span>     &#34;&#34;&#34;
+<span class="ansi-green-fg">   3496</span>     r, k = _ureduce(a, func=_median, axis=axis, out=out,
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 3497</span><span class="ansi-yellow-intense-fg ansi-bold">                     overwrite_input=overwrite_input)
+</span><span class="ansi-green-fg">   3498</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> keepdims<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">   3499</span>         <span class="ansi-green-intense-fg ansi-bold">return</span> r<span class="ansi-yellow-intense-fg ansi-bold">.</span>reshape<span class="ansi-yellow-intense-fg ansi-bold">(</span>k<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\numpy\lib\function_base.py</span> in <span class="ansi-cyan-fg">_ureduce</span><span class="ansi-blue-intense-fg ansi-bold">(a, func, **kwargs)</span>
+<span class="ansi-green-fg">   3403</span>         keepdim <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> a<span class="ansi-yellow-intense-fg ansi-bold">.</span>ndim
+<span class="ansi-green-fg">   3404</span> 
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 3405</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>r <span class="ansi-yellow-intense-fg ansi-bold">=</span> func<span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   3406</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> r<span class="ansi-yellow-intense-fg ansi-bold">,</span> keepdim
+<span class="ansi-green-fg">   3407</span> 
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\numpy\lib\function_base.py</span> in <span class="ansi-cyan-fg">_median</span><span class="ansi-blue-intense-fg ansi-bold">(a, axis, out, overwrite_input)</span>
+<span class="ansi-green-fg">   3528</span>             part <span class="ansi-yellow-intense-fg ansi-bold">=</span> a
+<span class="ansi-green-fg">   3529</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 3530</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>part <span class="ansi-yellow-intense-fg ansi-bold">=</span> partition<span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">,</span> kth<span class="ansi-yellow-intense-fg ansi-bold">,</span> axis<span class="ansi-yellow-intense-fg ansi-bold">=</span>axis<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   3531</span> 
+<span class="ansi-green-fg">   3532</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> part<span class="ansi-yellow-intense-fg ansi-bold">.</span>shape <span class="ansi-yellow-intense-fg ansi-bold">==</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\numpy\core\fromnumeric.py</span> in <span class="ansi-cyan-fg">partition</span><span class="ansi-blue-intense-fg ansi-bold">(a, kth, axis, kind, order)</span>
+<span class="ansi-green-fg">    732</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    733</span>         a <span class="ansi-yellow-intense-fg ansi-bold">=</span> asanyarray<span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>copy<span class="ansi-yellow-intense-fg ansi-bold">(</span>order<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-blue-intense-fg ansi-bold">&#34;K&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 734</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>a<span class="ansi-yellow-intense-fg ansi-bold">.</span>partition<span class="ansi-yellow-intense-fg ansi-bold">(</span>kth<span class="ansi-yellow-intense-fg ansi-bold">,</span> axis<span class="ansi-yellow-intense-fg ansi-bold">=</span>axis<span class="ansi-yellow-intense-fg ansi-bold">,</span> kind<span class="ansi-yellow-intense-fg ansi-bold">=</span>kind<span class="ansi-yellow-intense-fg ansi-bold">,</span> order<span class="ansi-yellow-intense-fg ansi-bold">=</span>order<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    735</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> a
+<span class="ansi-green-fg">    736</span> 
+
+<span class="ansi-red-intense-fg ansi-bold">KeyboardInterrupt</span>: </pre>
 </div>
 </div>
 
@@ -13739,29 +13625,26 @@ acc: 97.22%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[434]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Odaberite 2 cifre koje su pogresno klasfikovane i prikazite ih - ukoliko tacnost nije 100%. </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">))</span>
+<span class="n">test_results</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">!=</span> <span class="n">predictions</span>
 
-<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">wrong_prediction_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">test_results</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))[:,</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="n">test</span> <span class="o">=</span> <span class="n">Y_test</span> <span class="o">!=</span> <span class="n">predictions</span>
-<span class="n">wrong_prediction_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected result &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result was &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">wrong_image</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wrong_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
 
-<span class="n">wrong_image</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wrong_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Should be &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">Y_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
-
-<span class="n">wrongImage</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wrongImage</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Should be &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">Y_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected result &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result was &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">wrong_image</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="n">wrong_prediction_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wrong_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13778,12 +13661,25 @@ acc: 97.22%
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Should be 9
-Was 8
-Should be 8
-Was 4
+<pre>Expected result 9
+Result was 8
+Expected result 1
+Result was 9
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[35]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.image.AxesImage at 0x17d49e76438&gt;</pre>
+</div>
+
 </div>
 
 <div class="output_area">
@@ -13794,13 +13690,26 @@ Was 4
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
